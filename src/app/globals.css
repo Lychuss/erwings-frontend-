@@ -16,11 +16,27 @@
   :root {
     --background: linear-gradient(white,rgb(204, 199, 199));
     --foreground: #ededed;
+    --font-color: black;
   }
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: var(--font-color);
   font-family: var(--font-poppins);
+}
+
+/* For Chrome, Safari, and Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* For Internet Explorer and Edge */
+body {
+  -ms-overflow-style: none;
 }

@@ -15,7 +15,7 @@ const cards = [
 ]
 
 const position = [
-    {x: 360, rotate: 12, y:  140},
+    {x: 360, rotate: 12, y:  130},
     {x: 280, rotate: 4, y: 140},
     {x: 140, rotate: 4, y: 135},
     {x: 0, rotate: -2, y: 125},

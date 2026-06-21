@@ -124,5 +124,9 @@ export default function Home(){
             <Button ref={orderButtonRef} onClick={orderButtonAction} className="order bg-black border border-black rounded-2xl text-white px-6 py-2 text-xs" label="Order now" />
             <Button ref={readMoreButtonRef} onClick={readMoreButtonAction} className="read bg-[rgba(203,192,198,0.23)] border border-[rgba(203,192,198,0.23)] rounded-2xl px-4 py-2 text-xs" label="Read More" />
         </div>
+
+        <div className="translate-y-600">
+            .
+        </div>
     </>
 }

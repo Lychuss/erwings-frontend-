@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 
 const cards = [
     {id: 1, img: "images/card-1.jpg", title: "card1"},
@@ -14,7 +14,7 @@ const cards = [
     {id: 7, img: "images/card-7.jpg", title: "card1"},
 ]
 
-const position = [
+const position_phase1 = [
     {x: 360, rotate: 12, y:  130},
     {x: 280, rotate: 4, y: 140},
     {x: 140, rotate: 4, y: 135},
@@ -24,22 +24,78 @@ const position = [
     {x: -360, rotate: -10, y: 160},
 ]
 
+const position_phase2 = [
+    {x: 1080, y:  1360},
+    {x: 900, y: 1280},
+    {x: 720, y: 1200},
+    {x: 540, y: 1120},
+    {x: 360, y: 1040},
+    {x: 180, y: 960},
+    {x: -10, y: 880},
+]
+
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Cards(){
 
     useGSAP(() => {
-        const tl = gsap.timeline();
 
-        tl.to(".card", 
-            {x: 0, y: 150, duration: 1, ease: "power2.out", rotate: 0}
-        );
+        const tl1 = gsap.timeline();
+        const tl2 = gsap.timeline({
+                        scrollTrigger: {
+                        trigger: ".card",
+                        start: "top 25%",
+                        end: "center 0%",
+                        scrub: true,
+                        markers: true
+                }
+        })
 
-        tl.to(".card", 
-            {x: (i) => position[i].x,
-             y: (i) => position[i].y,
-             rotate: (i) => position[i].rotate,
-             duration: 5,
-             ease: "power4.out",
-             scale: 0.8
+        tl1.fromTo(".card", 
+            {
+                y: 400
+            },
+            {
+                x: 0, 
+                y: 150, 
+                duration: 1, 
+                ease: "power2.out", 
+                rotate: 0
+            }
+        ).to(".card", 
+            {
+                x: (i) => position_phase1[i].x,
+                y: (i) => position_phase1[i].y,
+                rotate: (i) => position_phase1[i].rotate,
+                duration: 5,
+                ease: "power4.out",
+                scale: 0.8
+            }
+        )
+        
+        tl2.fromTo(".card", 
+            {
+                y: 150
+            },
+            {
+                x: (i) => 0,
+                y: 750,
+                rotate: (i) => 0,
+                scale: 1,
+                duration: 5,
+                ease: "power2.out"
+            }
+        ).fromTo(".card", 
+            {
+                y: 750
+            },
+            {
+                y: (i) => position_phase2[i].y,
+                x: (i) => position_phase2[i].x,
+                scale: 1.1,
+                rotate: 0,
+                duration: 5,
+                ease: "power2.out"
             }
         )
     });
@@ -48,7 +104,7 @@ export default function Cards(){
         {cards.map((card) => (
             <div key={card.id} 
                 className={`card absolute font-black w-60 h-60 border rounded-2xl overflow-hidden`}
-                style={{ transform: `translateY(${card.id === 5  ? 1001.5 : 1000}px) translateX(${card.id === 5 ?  1.5: 0}px) rotate(-20.5deg)`,
+                style={{ transform: `translateY(${card.id === 5  ? 0: 0}px) translateX(${card.id === 5 ?  1.5: 0}px) rotate(-20.5deg)`,
                 zIndex: 10 - card.id}}>
                 <img src={card.img} className="w-full h-full object-cover"></img>             
             </div>

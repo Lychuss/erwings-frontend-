@@ -25,13 +25,13 @@ const position_phase1 = [
 ]
 
 const position_phase2 = [
-    {x: 1080, y:  1310},
-    {x: 900, y: 1230},
-    {x: 720, y: 1150},
-    {x: 540, y: 1070},
-    {x: 360, y: 990},
-    {x: 180, y: 910},
-    {x: -10, y: 830},
+    {x: 1080, y:  1360},
+    {x: 900, y: 1280},
+    {x: 720, y: 1200},
+    {x: 540, y: 1120},
+    {x: 360, y: 1040},
+    {x: 180, y: 960},
+    {x: -10, y: 880},
 ]
 
 gsap.registerPlugin(ScrollTrigger);
@@ -82,7 +82,7 @@ export default function Cards(){
                 y: 750,
                 rotate: (i) => 0,
                 scale: 1,
-                duration: 3,
+                duration: 5,
                 ease: "power2.out"
             }
         ).fromTo(".card", 
@@ -94,7 +94,7 @@ export default function Cards(){
                 x: (i) => position_phase2[i].x,
                 scale: 1.1,
                 rotate: 0,
-                duration: 4,
+                duration: 5,
                 ease: "power2.out"
             }
         )

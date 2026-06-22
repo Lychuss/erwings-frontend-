@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from "@/src/components/layouts/navbar";
 import Cards from "@/src/components/ui/card";
 import Button from "@/src/components/ui/button";
 import { useGSAP } from "@gsap/react";
@@ -89,44 +88,54 @@ export default function Home(){
     }, [])
 
     return <>
-        <Navbar />
 
-        <div className="flex items-center justify-center">
-            <h1 className="text-6xl font-medium text-center tracking-wider">
-                {wordsHead.map((word, i) => (
-                    <span key={i}>
-                        {i === wordsHead.length -2 && <br />}
-                        <span  className="word inline-block mr-2 my-2" style={{transform: `translateY(${100 + (i + 10)}px)`}}>
-                            {word}
+        <section>
+            <div className="flex items-center justify-center mt-30">
+                <h1 className="text-6xl font-medium text-center tracking-wider">
+                    {wordsHead.map((word, i) => (
+                        <span key={i}>
+                            {i === wordsHead.length -2 && <br />}
+                            <span  className="word inline-block mr-2 my-2" style={{transform: `translateY(${100 + (i + 10)}px)`}}>
+                                {word}
+                            </span>
                         </span>
-                    </span>
-                ))}
-            </h1>
-        </div>
+                    ))}
+                </h1>
+            </div>
 
-        <div className="flex items-center justify-center">
-            <Cards />
-        </div>
+            <div className="flex items-center justify-center">
+                <Cards />
+            </div>
 
-        <div className="flex items-center justify-center" ref={quoteParagraphRef}>
-            <p className="text-sm font-semibold text-center tracking-wider">
-                {wordsQuote.map((word, i) => (
-                    <span key={i}>
-                        <span className="paragraph inline-block mr-2 my-2" style={{transform: `translateY(${500 + (i + 5)}px)`}}>
-                            {word}
+            <div className="flex items-center justify-center" ref={quoteParagraphRef}>
+                <p className="text-sm font-semibold text-center tracking-wider">
+                    {wordsQuote.map((word, i) => (
+                        <span key={i}>
+                            <span className="paragraph inline-block mr-2 my-2" style={{transform: `translateY(${500 + (i + 5)}px)`}}>
+                                {word}
+                            </span>
                         </span>
-                    </span>
-                ))}
-            </p>
-        </div>
+                    ))}
+                </p>
+            </div>
 
-        <div className="flex items-center justify-center translate-y-100 gap-2">
-            <Button ref={orderButtonRef} onClick={orderButtonAction} className="order bg-black border border-black rounded-2xl text-white px-6 py-2 text-xs" label="Order now" />
-            <Button ref={readMoreButtonRef} onClick={readMoreButtonAction} className="read bg-[rgba(203,192,198,0.23)] border border-[rgba(203,192,198,0.23)] rounded-2xl px-4 py-2 text-xs" label="Read More" />
-        </div>
+            <div className="flex items-center justify-center translate-y-100 gap-2">
+                <Button ref={orderButtonRef} onClick={orderButtonAction} className="order bg-black border border-black rounded-2xl text-white px-6 py-2 text-xs" label="Order now" />
+                <Button ref={readMoreButtonRef} onClick={readMoreButtonAction} className="read bg-[rgba(203,192,198,0.23)] border border-[rgba(203,192,198,0.23)] rounded-2xl px-4 py-2 text-xs" label="Read More" />
+            </div>
 
-        <div className="translate-y-600">
-            .
-        </div>
+        </section>
+
+
+        <section className="py-10 px-23 translate-y-100 font-black h-150 space-y-13">
+            <p className="ecommerce font-medium mb-2">E-COMMERCE</p>
+            <h1 className="cripsy text-7xl font-medium leading-22 max-w-[15ch]">Crispy, Saucy,<span className="text-[rgba(144,20,0,0.8)]"> perfection served</span> to your table.</h1>
+            <p className="ordertext max-w-[30ch] leading-7 font-medium">Our website brings you crispy, perfectly cooked chicken wings with bold, mouth-watering sauces delivered straight home.</p>
+
+            <div>
+                <Button ref={orderButtonRef} onClick={orderButtonAction} className="ordersecond bg-black font-medium border border-black rounded-2xl text-white px-6 py-2 text-xs" label="Order now" />
+                <Button ref={readMoreButtonRef} onClick={readMoreButtonAction} className="readsecond font-medium bg-[rgba(203,192,198,0.23)] border border-[rgba(203,192,198,0.23)] rounded-2xl px-4 py-2 text-xs" label="Read More" />
+            </div>
+        </section>
     </>
 }

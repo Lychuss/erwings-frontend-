@@ -5,17 +5,24 @@ import Button from "@/src/components/ui/button";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Home(){
     const quoteParagraphRef = useRef<HTMLParagraphElement>(null);
     const orderButtonRef = useRef<HTMLButtonElement>(null);
     const readMoreButtonRef = useRef<HTMLButtonElement>(null);
 
-    const headTitle = "Big flavor in every single bite.";
+    const headTitleHome = "Big flavor in every single bite.";
     const quoteTitle = "Crispy, saucy, and unforgettable. Taste the ultimate wing";
+    const headTitleAbout = "Crispy, Saucy, perfection served to your table.";
+    const paragraphAbout = "Our website brings you crispy, perfectly cooked chicken wings with bold, mouth-watering sauces that we delivered straight home.";
 
-    const wordsHead = headTitle.split(" ");
+    const wordsHeadHome = headTitleHome.split(" ");
     const wordsQuote = quoteTitle.split(" ");
+    const wordsHeadAbout = headTitleAbout.split(" ");
+    const wordsParagraphAbout = paragraphAbout.split(" ");
 
     const orderButtonAction = () => {
 
@@ -27,6 +34,12 @@ export default function Home(){
 
     useGSAP(() => {
         const tl = gsap.timeline();
+        const tr = gsap.timeline({                
+                        scrollTrigger: {
+                        trigger: ".about",
+                        start: "top 50%",
+                        end: "bottom 0%"
+                }});
 
         tl.fromTo(".word", 
             {opacity: 0,
@@ -38,9 +51,7 @@ export default function Home(){
              filter: "blur(0px)",
              ease: "power4.out"
             }
-        )
-
-        tl.fromTo(".paragraph", 
+        ).fromTo(".paragraph", 
             {
              opacity: 0,
              filter: "blur(20px)",   
@@ -53,9 +64,7 @@ export default function Home(){
              duration: 0.5,
              ease: "power4.out"
             }
-        )
-
-        tl.fromTo(".order", 
+        ).fromTo(".order", 
             {
              opacity: 0,
              filter: "blur(30px)",   
@@ -68,9 +77,7 @@ export default function Home(){
              ease: "power4.out"
             }, 
             "<"
-        )
-
-        tl.fromTo(".read", 
+        ).fromTo(".read", 
             {
              opacity: 0,
              filter: "blur(30px)",   
@@ -85,6 +92,79 @@ export default function Home(){
             ">"
         )
 
+        tr.fromTo(".crispy",
+            {
+                y: 500,
+                filter: "blur(20px)",
+                opacity: 0
+            },
+            {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+                duration: 1,
+                ease: "power2.out",
+                stagger: 0.3
+            }
+        ).fromTo(".ecommerce",
+            {
+                y: 400,
+                opacity: 0,
+                filter: "blur(20px)"
+            },
+            {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+                duration: 1,
+                ease: "power2.out"
+            },
+            0
+        ).fromTo(".ordertext", 
+            {
+                y: 100,
+                filter: "blur(20px)",
+                opacity: 0
+            },
+            {
+                y: 0,
+                filter: "blur(0px)",
+                opacity: 1,
+                duration: 0.3,
+                stagger: 0.1,
+                ease: "power2.out"
+            },
+            0
+        ).fromTo(".ordersecond",
+            {
+                y: 100,
+                opacity: 0,
+                filter: "blur(20px)"
+            },
+            {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+                duration: 1,
+                ease: "power2.out"
+            },
+            0
+        ).fromTo(".readsecond",
+            {
+                y: 100,
+                opacity: 0,
+                filter: "blur(20px)"
+            },
+            {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+                duration: 2,
+                ease: "power2.out"
+            },
+            0
+        )
+
     }, [])
 
     return <>
@@ -92,9 +172,9 @@ export default function Home(){
         <section>
             <div className="flex items-center justify-center mt-30">
                 <h1 className="text-6xl font-medium text-center tracking-wider">
-                    {wordsHead.map((word, i) => (
+                    {wordsHeadHome.map((word, i) => (
                         <span key={i}>
-                            {i === wordsHead.length -2 && <br />}
+                            {i === wordsHeadHome.length -2 && <br />}
                             <span  className="word inline-block mr-2 my-2" style={{transform: `translateY(${100 + (i + 10)}px)`}}>
                                 {word}
                             </span>
@@ -127,12 +207,31 @@ export default function Home(){
         </section>
 
 
-        <section className="py-10 px-23 translate-y-100 font-black h-150 space-y-13">
+        <section className="about py-10 px-23 translate-y-100 font-black h-150 space-y-13">
             <p className="ecommerce font-medium mb-2">E-COMMERCE</p>
-            <h1 className="cripsy text-7xl font-medium leading-22 max-w-[15ch]">Crispy, Saucy,<span className="text-[rgba(144,20,0,0.8)]"> perfection served</span> to your table.</h1>
-            <p className="ordertext max-w-[30ch] leading-7 font-medium">Our website brings you crispy, perfectly cooked chicken wings with bold, mouth-watering sauces delivered straight home.</p>
+            <h1 className="text-7xl font-medium">
+                {wordsHeadAbout.map((word, i) => (
+                    <span key={i}>
+                        {(i === 2 || i === 4) && <br />}
+                        <span className="crispy inline-block leading-22 mr-5">
+                            {(i > 3 || i < 2) && word}
+                            {(i === 2 || i === 3) && <span className="text-[rgba(144,20,0,0.8)]">{word}</span>}
+                        </span>
+                    </span>
+                ))}
+            </h1>
+            <p className="leading-7 font-medium">
+                    {wordsParagraphAbout.map((word, i) => (
+                        <span key={i}>
+                            {(i === 7 || i === 12) && <br />}
+                            <span  className="ordertext inline-block mr-1" style={{ transform: `translateY(${100 + (i + 5)}px)`}}>
+                                {word}
+                            </span>
+                        </span>
+                    ))}
+            </p>
 
-            <div>
+            <div className="aboutbutton">
                 <Button ref={orderButtonRef} onClick={orderButtonAction} className="ordersecond bg-black font-medium border border-black rounded-2xl text-white px-6 py-2 text-xs" label="Order now" />
                 <Button ref={readMoreButtonRef} onClick={readMoreButtonAction} className="readsecond font-medium bg-[rgba(203,192,198,0.23)] border border-[rgba(203,192,198,0.23)] rounded-2xl px-4 py-2 text-xs" label="Read More" />
             </div>

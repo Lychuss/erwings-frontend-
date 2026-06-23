@@ -14,10 +14,15 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: linear-gradient(white,rgb(204, 199, 199));
     --foreground: #ededed;
     --font-color: black;
   }
+}
+
+:root {
+  --background: linear-gradient(white,rgb(204, 199, 199));;
+  --foreground: #171717;
+  --font-color: black;
 }
 
 body {
@@ -25,6 +30,15 @@ body {
   color: var(--font-color);
   font-family: var(--font-poppins);
   overflow-x: hidden;
+  -ms-overflow-style: none;  
+  scrollbar-width: none;
 }
 
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
 
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}

@@ -46,8 +46,7 @@ export default function Cards(){
                         trigger: ".card",
                         start: "top 25%",
                         end: "center 0%",
-                        scrub: true,
-                        markers: true
+                        scrub: true
                 }
         })
 

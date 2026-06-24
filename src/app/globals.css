@@ -34,11 +34,16 @@ body {
   scrollbar-width: none;
 }
 
-html {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+.embla__viewport {
+  overflow: hidden;
 }
 
-html::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+.embla__container {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+}
+
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
 }

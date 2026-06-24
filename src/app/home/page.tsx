@@ -3,26 +3,51 @@
 import Cards from "@/src/components/ui/card";
 import Button from "@/src/components/ui/button";
 import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
 
 gsap.registerPlugin(ScrollTrigger);
+
+
+const headTitleHome = "Big flavor in every single bite.";
+const quoteTitle = "Crispy, saucy, and unforgettable. Taste the ultimate wing";
+const headTitleAbout = "Crispy, Saucy, perfection served to your table.";
+const paragraphAbout = "Our website brings you crispy, perfectly cooked chicken wings with bold, mouth-watering sauces that we delivered straight home.";
+const quoteName = "OWNED BY RAPHAEL MHARCUS SAN JUAN" // can be changed after the erwings agreed to get the website
+const headTitlePricing = "Flavor big prices small.";
+
+const wordsHeadHome = headTitleHome.split(" ");
+const wordsQuote = quoteTitle.split(" ");
+const wordsHeadAbout = headTitleAbout.split(" ");
+const wordsParagraphAbout = paragraphAbout.split(" ");
+const wordsQouteName = quoteName.split(" ");
+const wordsHeadPricing = headTitlePricing.split(" ");
+
+const carouselImages = [
+    { alt: "carousel1", src: "images/carousel_1.jpg"},
+    { alt: "carousel2", src: "images/carousel_2.jpg"},
+    { alt: "carousel3", src: "images/carousel_3.jpg"},
+    { alt: "carousel4", src: "images/carousel_4.jpg"},
+    { alt: "carousel5", src: "images/carousel_5.jpg"},
+]
+
 
 export default function Home(){
     const quoteParagraphRef = useRef<HTMLParagraphElement>(null);
     const orderButtonRef = useRef<HTMLButtonElement>(null);
     const readMoreButtonRef = useRef<HTMLButtonElement>(null);
+    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()])
 
-    const headTitleHome = "Big flavor in every single bite.";
-    const quoteTitle = "Crispy, saucy, and unforgettable. Taste the ultimate wing";
-    const headTitleAbout = "Crispy, Saucy, perfection served to your table.";
-    const paragraphAbout = "Our website brings you crispy, perfectly cooked chicken wings with bold, mouth-watering sauces that we delivered straight home.";
+    const goToPrev = () => emblaApi?.scrollPrev()
+    const goToNext = () => emblaApi?.scrollNext()
 
-    const wordsHeadHome = headTitleHome.split(" ");
-    const wordsQuote = quoteTitle.split(" ");
-    const wordsHeadAbout = headTitleAbout.split(" ");
-    const wordsParagraphAbout = paragraphAbout.split(" ");
+    useEffect(() => {
+        if (!emblaApi) return
+            emblaApi.plugins().autoplay?.play()
+    }, [emblaApi])
 
     const orderButtonAction = () => {
 
@@ -235,6 +260,49 @@ export default function Home(){
                 <Button ref={orderButtonRef} onClick={orderButtonAction} className="ordersecond bg-black font-medium border border-black rounded-2xl text-white px-6 py-2 text-xs" label="Order now" />
                 <Button ref={readMoreButtonRef} onClick={readMoreButtonAction} className="readsecond font-medium bg-[rgba(203,192,198,0.23)] border border-[rgba(203,192,198,0.23)] rounded-2xl px-4 py-2 text-xs" label="Read More" />
             </div>
+        </section>
+
+        <section className="pricing px-20 py-5">
+                    <div className="flex flex-col gap-5">
+                        <h1 className="font-medium tracking-wider">
+                            {wordsQouteName.map((word, i) => (
+                                <span key={i}>
+                                    <span  className="ownername inline-block mr-3" style={{ transform: `translateY(${500 + (i + 5)}px)`}}>
+                                        {word}
+                                    </span>
+                                </span>
+                            ))}
+                        </h1>
+                        <h1 className="font-medium tracking-wider text-6xl my-5">
+                            {wordsHeadPricing.map((word, i) => (
+                                <span key={i}>
+                                    {i === 2 && <br></br>}
+                                    <span  className="headpricing inline-block mr-3 my-1" style={{ transform: `translateY(${500 + (i + 5)}px)`}}>
+                                        {word}
+                                    </span>
+                                </span>
+                            ))}
+                        </h1>
+                    </div>
+                    <div className="flex items-center justify-center">
+                        <div className="embla w-[80%] translate-y-125">
+                            <div className="embla__viewport" ref={emblaRef}>
+                                <div className="embla__container">
+                                {carouselImages.map((images, i) => (
+                                    <img key={i} className="embla__slide h-100 flex items-center justify-center rounded-2xl bg-red-200" 
+                                        src={images.src} alt={images.alt} ></img>
+                                ))}
+                                </div>
+                            </div>
+
+                            <button onClick={goToPrev} className="absolute z-10 right-35 top-90 border rounded-full border-[rgba(229,229,229,0.8)] bg-[rgba(229,229,229,0.8)]">
+                                <img src="images/left-arrow-icon.png" alt="prev-icon"></img>
+                            </button>
+                            <button onClick={goToNext} className="absolute z-10 right-25 top-90 border rounded-full border-[rgba(229,229,229,0.8)] bg-[rgba(229,229,229,0.8)]">
+                                <img src="images/right-arrow-icon.png" alt="next-icon"></img>
+                            </button>
+                        </div>
+                    </div>
         </section>
     </>
 }

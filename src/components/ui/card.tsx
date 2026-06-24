@@ -6,12 +6,12 @@ import { ScrollTrigger } from "gsap/all";
 
 const cards = [
     {id: 1, img: "images/card-1.jpg", title: "card1"},
-    {id: 2, img: "images/card-2.jpg", title: "card1"},
-    {id: 3, img: "images/card-3.jpg", title: "card1"},
-    {id: 4, img: "images/card-4.jpg", title: "card1"},
-    {id: 5, img: "images/card-5.jpg", title: "card1"},
-    {id: 6, img: "images/card-6.jpg", title: "card1"},
-    {id: 7, img: "images/card-7.jpg", title: "card1"},
+    {id: 2, img: "images/card-2.jpg", title: "card2"},
+    {id: 3, img: "images/card-3.jpg", title: "card3"},
+    {id: 4, img: "images/card-4.jpg", title: "card4"},
+    {id: 5, img: "images/card-5.jpg", title: "card5"},
+    {id: 6, img: "images/card-6.jpg", title: "card6"},
+    {id: 7, img: "images/card-7.jpg", title: "card7"},
 ]
 
 const position_phase1 = [
@@ -105,7 +105,7 @@ export default function Cards(){
                 className={`card absolute font-black w-60 h-60 border rounded-2xl overflow-hidden`}
                 style={{ transform: `translateY(${card.id === 5  ? 0: 0}px) translateX(${card.id === 5 ?  1.5: 0}px) rotate(-20.5deg)`,
                 zIndex: 10 - card.id}}>
-                <img src={card.img} className="w-full h-full object-cover"></img>             
+                <img src={card.img} alt={card.title} className="w-full h-full object-cover"></img>             
             </div>
         ))}
     </>

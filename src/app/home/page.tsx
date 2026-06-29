@@ -59,12 +59,21 @@ export default function Home(){
 
     useGSAP(() => {
         const tl = gsap.timeline();
-        const tr = gsap.timeline({                
-                        scrollTrigger: {
-                        trigger: ".about",
-                        start: "top 50%",
-                        end: "bottom 0%"
-                }});
+        const trAbout = gsap.timeline({                
+                scrollTrigger: {
+                trigger: ".about",
+                start: "top 50%",
+                end: "bottom 0%"
+            }
+        });
+        const trPricing = gsap.timeline({
+                scrollTrigger: {
+                trigger: ".pricing",
+                start: "top 20%",
+                end: "bottom 0%",
+                markers: true
+            }
+        });
 
         tl.fromTo(".word", 
             {opacity: 0,
@@ -117,7 +126,7 @@ export default function Home(){
             ">"
         )
 
-        tr.fromTo(".crispy",
+        trAbout.fromTo(".crispy",
             {
                 y: 500,
                 filter: "blur(20px)",
@@ -185,6 +194,47 @@ export default function Home(){
                 opacity: 1,
                 filter: "blur(0px)",
                 duration: 2,
+                ease: "power2.out"
+            },
+            0
+        )
+
+        trPricing.fromTo(".ownername",
+            {
+                y: 600,
+                opacity: 0,
+                filter: "blur(20px)"
+            },
+            {
+                y: 500,
+                opacity: 1,
+                filter: "blur(0px)",
+                duration: 1,
+                ease: "power2.out",
+                stagger: 0.3
+            }
+        ).fromTo(".headpricing",
+            {
+                y: 600,
+                opacity: 0,
+                filter: "blur(20px)"
+            },
+            {
+                y: 500, 
+                opacity: 1,
+                filter: "blur(0px)",
+                duration: 1,
+                ease: "power2.out",
+                stagger: 0.3
+            },
+            0
+        ).fromTo(".embla",
+            {
+                y: 1000,
+            },
+            {
+                y: 500,
+                duration: 1,
                 ease: "power2.out"
             },
             0
@@ -263,7 +313,7 @@ export default function Home(){
         </section>
 
         <section className="pricing px-20 py-5">
-                    <div className="flex flex-col gap-5">
+                    <div className="flex flex-col gap-1">
                         <h1 className="font-medium tracking-wider">
                             {wordsQouteName.map((word, i) => (
                                 <span key={i}>
@@ -273,7 +323,7 @@ export default function Home(){
                                 </span>
                             ))}
                         </h1>
-                        <h1 className="font-medium tracking-wider text-6xl my-5">
+                        <h1 className="font-medium tracking-wider text-6xl my-1">
                             {wordsHeadPricing.map((word, i) => (
                                 <span key={i}>
                                     {i === 2 && <br></br>}
@@ -289,7 +339,7 @@ export default function Home(){
                             <div className="embla__viewport" ref={emblaRef}>
                                 <div className="embla__container">
                                 {carouselImages.map((images, i) => (
-                                    <img key={i} className="embla__slide h-100 flex items-center justify-center rounded-2xl bg-red-200" 
+                                    <img key={i} className="embla__slide h-110 flex items-center justify-center rounded-2xl bg-red-200" 
                                         src={images.src} alt={images.alt} ></img>
                                 ))}
                                 </div>
@@ -303,6 +353,10 @@ export default function Home(){
                             </button>
                         </div>
                     </div>
+        </section>
+        
+        <section className="h-500">
+            <div>hellooo</div>
         </section>
     </>
 }

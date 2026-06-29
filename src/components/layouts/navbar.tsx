@@ -42,7 +42,7 @@ export default function Navbar(){
     }, {scope: navNavbar})
 
     return <>
-        <nav className="flex fixed py-10 px-15 items-center" ref={navNavbar}>
+        <nav className="flex fixed py-10 px-15 items-center z-100" ref={navNavbar}>
 
             <div className="iconDiv flex gap-3 w-200 items-center opacity-0 translate-y-[20px]">
                 <img src="/icons/wing.png"></img>

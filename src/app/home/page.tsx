@@ -239,7 +239,7 @@ export default function Home(){
                 y: 1000,
             },
             {
-                y: 480,
+                y: 450,
                 duration: 1,
                 ease: "power2.out"
             },
@@ -318,12 +318,12 @@ export default function Home(){
             </div>
         </section>
 
-        <section className="pricing px-20 py-5">
+        <section className="pricing px-20 py-5 h-250 space-y-13">
                     <div className="flex flex-col gap-1">
                         <h1 className="font-medium tracking-wider">
                             {wordsQouteName.map((word, i) => (
                                 <span key={i}>
-                                    <span  className="ownername inline-block mr-3" style={{ transform: `translateY(${500 + (i + 5)}px)`}}>
+                                    <span  className="ownername inline-block mr-3">
                                         {word}
                                     </span>
                                 </span>
@@ -333,7 +333,7 @@ export default function Home(){
                             {wordsHeadPricing.map((word, i) => (
                                 <span key={i}>
                                     {i === 2 && <br></br>}
-                                    <span  className="headpricing inline-block mr-3 my-1" style={{ transform: `translateY(${500 + (i + 5)}px)`}}>
+                                    <span  className="headpricing inline-block mr-3 my-1">
                                         {word}
                                     </span>
                                 </span>
@@ -341,7 +341,7 @@ export default function Home(){
                         </h1>
                     </div>
                     <div className="flex items-center justify-center">
-                        <div className="embla w-[80%] translate-y-125">
+                        <div className="embla w-[80%]">
                             <div className="embla__viewport" ref={emblaRef}>
                                 <div className="embla__container">
                                 {carouselImages.map((images, i) => (
@@ -361,12 +361,13 @@ export default function Home(){
                     </div>
         </section>
         
-        <section className="">
+        <section className="contact px-20 py-5 h-220 space-y-13 flex items-center justify-center">
             <div>
-                <h1>
+                <h1 className="text-center">
                     {wordsQuoteContact.map((word, i) => (
                         <span className="">
-                            <span key={i}>
+                            {(i === 8 || i == 16) && <br></br>}
+                            <span key={i} className="mr-2">
                                 {word}
                             </span>
                         </span>

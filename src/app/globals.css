@@ -20,7 +20,7 @@
 }
 
 :root {
-  --background: linear-gradient(white,rgb(204, 199, 199));;
+  --background: rgb(204, 199, 199);;
   --foreground: #171717;
   --font-color: black;
 }

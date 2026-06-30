@@ -18,6 +18,7 @@ const headTitleAbout = "Crispy, Saucy, perfection served to your table.";
 const paragraphAbout = "Our website brings you crispy, perfectly cooked chicken wings with bold, mouth-watering sauces that we delivered straight home.";
 const quoteName = "OWNED BY RAPHAEL MHARCUS SAN JUAN" // can be changed after the erwings agreed to get the website
 const headTitlePricing = "Flavor big prices small.";
+const mainQuoteContact = "One bite of our mouthwatering chicken wings changes everything. Contact us today and treat yourself to irresistible flavor and satisfaction!"
 
 const wordsHeadHome = headTitleHome.split(" ");
 const wordsQuote = quoteTitle.split(" ");
@@ -25,6 +26,7 @@ const wordsHeadAbout = headTitleAbout.split(" ");
 const wordsParagraphAbout = paragraphAbout.split(" ");
 const wordsQouteName = quoteName.split(" ");
 const wordsHeadPricing = headTitlePricing.split(" ");
+const wordsQuoteContact = mainQuoteContact.split(" ");
 
 const carouselImages = [
     { alt: "carousel1", src: "images/carousel_1.jpg"},
@@ -62,8 +64,9 @@ export default function Home(){
         const trAbout = gsap.timeline({                
                 scrollTrigger: {
                 trigger: ".about",
-                start: "top 50%",
-                end: "bottom 0%"
+                start: "top 20%",
+                end: "bottom 0%",
+                markers: true
             }
         });
         const trPricing = gsap.timeline({
@@ -88,7 +91,8 @@ export default function Home(){
         ).fromTo(".paragraph", 
             {
              opacity: 0,
-             filter: "blur(20px)",   
+             filter: "blur(20px)",  
+             y: 300 
             },
             {
              opacity: 1,
@@ -100,13 +104,14 @@ export default function Home(){
             }
         ).fromTo(".order", 
             {
+             y: 350,
              opacity: 0,
              filter: "blur(30px)",   
             },
             {
              opacity: 1,
              filter: "blur(0px)",
-             y: -80,
+             y: 300,
              duration: 0.8,
              ease: "power4.out"
             }, 
@@ -114,12 +119,13 @@ export default function Home(){
         ).fromTo(".read", 
             {
              opacity: 0,
-             filter: "blur(30px)",   
+             filter: "blur(30px)",  
+             y: 350 
             },
             {
              opacity: 1,
              filter: "blur(0px)",
-             y: -80,
+             y: 300,
              duration: 0.8,
              ease: "power4.out"
             }, 
@@ -128,12 +134,12 @@ export default function Home(){
 
         trAbout.fromTo(".crispy",
             {
-                y: 500,
+                y: 450,
                 filter: "blur(20px)",
                 opacity: 0
             },
             {
-                y: 0,
+                y: 420,
                 opacity: 1,
                 filter: "blur(0px)",
                 duration: 1,
@@ -142,12 +148,12 @@ export default function Home(){
             }
         ).fromTo(".ecommerce",
             {
-                y: 400,
+                y: 430,
                 opacity: 0,
                 filter: "blur(20px)"
             },
             {
-                y: 0,
+                y: 400,
                 opacity: 1,
                 filter: "blur(0px)",
                 duration: 1,
@@ -156,12 +162,12 @@ export default function Home(){
             0
         ).fromTo(".ordertext", 
             {
-                y: 100,
+                y: 440,
                 filter: "blur(20px)",
                 opacity: 0
             },
             {
-                y: 0,
+                y: 400,
                 filter: "blur(0px)",
                 opacity: 1,
                 duration: 0.3,
@@ -171,12 +177,12 @@ export default function Home(){
             0
         ).fromTo(".ordersecond",
             {
-                y: 100,
+                y: 400,
                 opacity: 0,
                 filter: "blur(20px)"
             },
             {
-                y: 0,
+                y: 380,
                 opacity: 1,
                 filter: "blur(0px)",
                 duration: 1,
@@ -185,12 +191,12 @@ export default function Home(){
             0
         ).fromTo(".readsecond",
             {
-                y: 100,
+                y: 400,
                 opacity: 0,
                 filter: "blur(20px)"
             },
             {
-                y: 0,
+                y: 380,
                 opacity: 1,
                 filter: "blur(0px)",
                 duration: 2,
@@ -201,12 +207,12 @@ export default function Home(){
 
         trPricing.fromTo(".ownername",
             {
-                y: 600,
+                y: 500,
                 opacity: 0,
                 filter: "blur(20px)"
             },
             {
-                y: 500,
+                y: 480,
                 opacity: 1,
                 filter: "blur(0px)",
                 duration: 1,
@@ -215,12 +221,12 @@ export default function Home(){
             }
         ).fromTo(".headpricing",
             {
-                y: 600,
+                y: 510,
                 opacity: 0,
                 filter: "blur(20px)"
             },
             {
-                y: 500, 
+                y: 480, 
                 opacity: 1,
                 filter: "blur(0px)",
                 duration: 1,
@@ -233,7 +239,7 @@ export default function Home(){
                 y: 1000,
             },
             {
-                y: 500,
+                y: 480,
                 duration: 1,
                 ease: "power2.out"
             },
@@ -244,13 +250,13 @@ export default function Home(){
 
     return <>
 
-        <section>
+        <section className="home">
             <div className="flex items-center justify-center mt-30">
                 <h1 className="text-6xl font-medium text-center tracking-wider">
                     {wordsHeadHome.map((word, i) => (
                         <span key={i}>
                             {i === wordsHeadHome.length -2 && <br />}
-                            <span  className="word inline-block mr-2 my-2" style={{transform: `translateY(${100 + (i + 10)}px)`}}>
+                            <span  className="word inline-block mr-2 my-2">
                                 {word}
                             </span>
                         </span>
@@ -266,7 +272,7 @@ export default function Home(){
                 <p className="text-sm font-semibold text-center tracking-wider">
                     {wordsQuote.map((word, i) => (
                         <span key={i}>
-                            <span className="paragraph inline-block mr-2 my-2" style={{transform: `translateY(${500 + (i + 5)}px)`}}>
+                            <span className="paragraph inline-block mr-2 my-2">
                                 {word}
                             </span>
                         </span>
@@ -274,7 +280,7 @@ export default function Home(){
                 </p>
             </div>
 
-            <div className="flex items-center justify-center translate-y-100 gap-2">
+            <div className="flex items-center justify-center gap-2">
                 <Button ref={orderButtonRef} onClick={orderButtonAction} className="order bg-black border border-black rounded-2xl text-white px-6 py-2 text-xs" label="Order now" />
                 <Button ref={readMoreButtonRef} onClick={readMoreButtonAction} className="read bg-[rgba(203,192,198,0.23)] border border-[rgba(203,192,198,0.23)] rounded-2xl px-4 py-2 text-xs" label="Read More" />
             </div>
@@ -282,7 +288,7 @@ export default function Home(){
         </section>
 
 
-        <section className="about py-10 px-23 translate-y-100 font-black h-150 space-y-13">
+        <section className="about py-10 px-23 font-black h-150 space-y-13">
             <p className="ecommerce font-medium mb-2">E-COMMERCE</p>
             <h1 className="text-7xl font-medium">
                 {wordsHeadAbout.map((word, i) => (
@@ -299,7 +305,7 @@ export default function Home(){
                     {wordsParagraphAbout.map((word, i) => (
                         <span key={i}>
                             {(i === 7 || i === 12) && <br />}
-                            <span  className="ordertext inline-block mr-1" style={{ transform: `translateY(${100 + (i + 5)}px)`}}>
+                            <span  className="ordertext inline-block mr-1">
                                 {word}
                             </span>
                         </span>
@@ -355,8 +361,18 @@ export default function Home(){
                     </div>
         </section>
         
-        <section className="h-500">
-            <div>hellooo</div>
+        <section className="">
+            <div>
+                <h1>
+                    {wordsQuoteContact.map((word, i) => (
+                        <span className="">
+                            <span key={i}>
+                                {word}
+                            </span>
+                        </span>
+                    ))}
+                </h1>
+            </div>
         </section>
     </>
 }

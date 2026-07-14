@@ -8,6 +8,9 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
+import { FaFacebook } from "react-icons/fa";
+import { SiFoodpanda } from "react-icons/si";
+import { RiInstagramFill } from "react-icons/ri";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,7 +21,7 @@ const headTitleAbout = "Crispy, Saucy, perfection served to your table.";
 const paragraphAbout = "Our website brings you crispy, perfectly cooked chicken wings with bold, mouth-watering sauces that we delivered straight home.";
 const quoteName = "OWNED BY RAPHAEL MHARCUS SAN JUAN" // can be changed after the erwings agreed to get the website
 const headTitlePricing = "Flavor big prices small.";
-const mainQuoteContact = "One bite of our mouthwatering chicken wings changes everything. Contact us today and treat yourself to irresistible flavor and satisfaction!"
+const mainQuoteContact = "One bite of our mouthwatering chicken wings changes everything. Contact us today ☎︎ and treat yourself to irresistible flavor 🍗 and satisfaction!"
 
 const wordsHeadHome = headTitleHome.split(" ");
 const wordsQuote = quoteTitle.split(" ");
@@ -361,19 +364,35 @@ export default function Home(){
                     </div>
         </section>
         
-        <section className="contact px-20 py-5 h-220 space-y-13 flex items-center justify-center">
+        <section className="contact px-20 py-5 h-250 space-y-13 flex items-center justify-center flex-col">
+            
+            <div className="flex">
+                {carouselImages.map((image, i) => (
+                    
+                        <img src={image.src} key={i} alt={image.alt} className={`absolute w-60 h-80 rounded-xl z${50 + i}`}></img>
+                    
+                ))}
+            </div>
+
             <div>
                 <h1 className="text-center">
                     {wordsQuoteContact.map((word, i) => (
-                        <span className="">
+                        <span className="text-[38px] font-medium">
                             {(i === 8 || i == 16) && <br></br>}
-                            <span key={i} className="mr-2">
+                            <span key={i} className={`mr-4 ${i > 14 ? "text-gray-200" : ""}`}>
                                 {word}
                             </span>
                         </span>
                     ))}
                 </h1>
             </div>
+
+            <div className="flex space-x-3 text-4xl">
+                <FaFacebook className="cursor-pointer"/>
+                <SiFoodpanda className="cursor-pointer"/>
+                <RiInstagramFill className="cursor-pointer"/>
+            </div>
+
         </section>
     </>
 }

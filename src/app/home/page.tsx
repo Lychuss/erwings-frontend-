@@ -32,11 +32,11 @@ const wordsHeadPricing = headTitlePricing.split(" ");
 const wordsQuoteContact = mainQuoteContact.split(" ");
 
 const carouselImages = [
-    { alt: "carousel1", src: "images/carousel_1.jpg"},
-    { alt: "carousel2", src: "images/carousel_2.jpg"},
-    { alt: "carousel3", src: "images/carousel_3.jpg"},
-    { alt: "carousel4", src: "images/carousel_4.jpg"},
-    { alt: "carousel5", src: "images/carousel_5.jpg"},
+    { alt: "carousel1", src: "images/carousel_1.jpg", rotate: -30, x: 50, y: 0, next_x: 5},
+    { alt: "carousel2", src: "images/carousel_2.jpg", rotate: -20, x: 35, y: 10, next_x: 10},
+    { alt: "carousel3", src: "images/carousel_3.jpg", rotate: -10, x: 25, y: 30, next_x: 15},
+    { alt: "carousel4", src: "images/carousel_4.jpg", rotate: 0, x: 15, y: 50, next_x: 20},
+    { alt: "carousel5", src: "images/carousel_5.jpg", rotate: 10, x: 0, y: 70, next_x: 25}
 ]
 
 
@@ -68,13 +68,19 @@ export default function Home(){
                 scrollTrigger: {
                 trigger: ".about",
                 start: "top 20%",
-                end: "bottom 0%",
-                markers: true
+                end: "bottom 0%"
             }
         });
         const trPricing = gsap.timeline({
                 scrollTrigger: {
                 trigger: ".pricing",
+                start: "top 20%",
+                end: "bottom 0%"
+            }
+        });
+        const trContact = gsap.timeline({
+                scrollTrigger: {
+                trigger: ".contact",
                 start: "top 20%",
                 end: "bottom 0%",
                 markers: true
@@ -249,6 +255,27 @@ export default function Home(){
             0
         )
 
+        trContact.fromTo(".concard",
+            {
+                y: 0,
+                scale: 0
+            },
+            {
+                y: (i) => carouselImages[i].y,
+                x: (i) => carouselImages[i].x,
+                stagger: 0.2,
+                scale: 1,
+                duration: 1
+            }
+        ).to(".concard", 
+            {
+                rotate: (i) => carouselImages[i].rotate,
+                y: 50,
+                x: (i) => carouselImages[i].next_x,
+                duration: 0.6
+            }
+        )
+
     }, [])
 
     return <>
@@ -366,10 +393,10 @@ export default function Home(){
         
         <section className="contact px-20 py-5 h-250 space-y-13 flex items-center justify-center flex-col">
             
-            <div className="flex">
+            <div className="flex items-center justify-center">
                 {carouselImages.map((image, i) => (
                     
-                        <img src={image.src} key={i} alt={image.alt} className={`absolute w-60 h-80 rounded-xl z${50 + i}`}></img>
+                        <img src={image.src} key={i} alt={image.alt} className={`concard absolute w-45 h-55 rounded-xl z${50 + i}`}></img>
                     
                 ))}
             </div>

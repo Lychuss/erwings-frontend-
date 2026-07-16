@@ -255,7 +255,15 @@ export default function Home(){
             0
         )
 
-        trContact.fromTo(".concard",
+        trContact.fromTo(".quote_name", 
+            {
+                filter: "blur(20px)",
+            },
+            {
+                filter: "blur(0px)",
+                stagger: 0.1,
+            }
+        ).fromTo(".concard",
             {
                 y: 0,
                 scale: 0
@@ -266,7 +274,8 @@ export default function Home(){
                 stagger: 0.2,
                 scale: 1,
                 duration: 1
-            }
+            },
+            0
         ).to(".concard", 
             {
                 rotate: (i) => carouselImages[i].rotate,
@@ -274,6 +283,15 @@ export default function Home(){
                 x: (i) => carouselImages[i].next_x,
                 duration: 0.6
             }
+        ).fromTo(".social_icons", 
+            {
+                filter: "blur(20px)"
+            },
+            {
+                filter: "blur(0px)",
+                stagger: 0.2
+            },
+            0
         )
 
     }, [])
@@ -286,7 +304,7 @@ export default function Home(){
                     {wordsHeadHome.map((word, i) => (
                         <span key={i}>
                             {i === wordsHeadHome.length -2 && <br />}
-                            <span  className="word inline-block mr-2 my-2">
+                            <span className="word inline-block mr-2 my-2">
                                 {word}
                             </span>
                         </span>
@@ -335,7 +353,7 @@ export default function Home(){
                     {wordsParagraphAbout.map((word, i) => (
                         <span key={i}>
                             {(i === 7 || i === 12) && <br />}
-                            <span  className="ordertext inline-block mr-1">
+                            <span className="ordertext inline-block mr-1">
                                 {word}
                             </span>
                         </span>
@@ -353,7 +371,7 @@ export default function Home(){
                         <h1 className="font-medium tracking-wider">
                             {wordsQouteName.map((word, i) => (
                                 <span key={i}>
-                                    <span  className="ownername inline-block mr-3">
+                                    <span className="ownername inline-block mr-3">
                                         {word}
                                     </span>
                                 </span>
@@ -363,7 +381,7 @@ export default function Home(){
                             {wordsHeadPricing.map((word, i) => (
                                 <span key={i}>
                                     {i === 2 && <br></br>}
-                                    <span  className="headpricing inline-block mr-3 my-1">
+                                    <span className="headpricing inline-block mr-3 my-1">
                                         {word}
                                     </span>
                                 </span>
@@ -396,17 +414,17 @@ export default function Home(){
             <div className="flex items-center justify-center">
                 {carouselImages.map((image, i) => (
                     
-                        <img src={image.src} key={i} alt={image.alt} className={`concard absolute w-45 h-55 rounded-xl z${50 + i}`}></img>
+                        <img src={image.src} key={i} alt={image.alt} className="concard absolute w-45 h-55 rounded-xl" style={{ zIndex: 50 + i }}></img>
                     
                 ))}
             </div>
 
             <div>
-                <h1 className="text-center">
+                <h1 className="text-center z-0">
                     {wordsQuoteContact.map((word, i) => (
-                        <span className="text-[38px] font-medium">
+                        <span key={i} className="text-[38px] font-medium z-0">
                             {(i === 8 || i == 16) && <br></br>}
-                            <span key={i} className={`mr-4 ${i > 14 ? "text-gray-200" : ""}`}>
+                            <span className={`quote_name mr-4 z-0 ${i > 14 ? "text-gray-200" : ""}`}>
                                 {word}
                             </span>
                         </span>
@@ -415,9 +433,9 @@ export default function Home(){
             </div>
 
             <div className="flex space-x-3 text-4xl">
-                <FaFacebook className="cursor-pointer"/>
-                <SiFoodpanda className="cursor-pointer"/>
-                <RiInstagramFill className="cursor-pointer"/>
+                <FaFacebook className="social_icons cursor-pointer"/>
+                <SiFoodpanda className="social_icons cursor-pointer"/>
+                <RiInstagramFill className="social_icons cursor-pointer"/>
             </div>
 
         </section>

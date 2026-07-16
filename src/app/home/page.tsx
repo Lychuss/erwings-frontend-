@@ -33,10 +33,22 @@ const wordsQuoteContact = mainQuoteContact.split(" ");
 
 const carouselImages = [
     { alt: "carousel1", src: "images/carousel_1.jpg", rotate: -30, x: 50, y: 0, next_x: 5},
-    { alt: "carousel2", src: "images/carousel_2.jpg", rotate: -20, x: 35, y: 10, next_x: 10},
-    { alt: "carousel3", src: "images/carousel_3.jpg", rotate: -10, x: 25, y: 30, next_x: 15},
-    { alt: "carousel4", src: "images/carousel_4.jpg", rotate: 0, x: 15, y: 50, next_x: 20},
-    { alt: "carousel5", src: "images/carousel_5.jpg", rotate: 10, x: 0, y: 70, next_x: 25}
+    { alt: "carousel2", src: "images/carousel_2.jpg", rotate: -20, x: 40, y: 10, next_x: 10},
+    { alt: "carousel3", src: "images/carousel_3.jpg", rotate: -10, x: 30, y: 30, next_x: 15},
+    { alt: "carousel4", src: "images/carousel_4.jpg", rotate: 0, x: 20, y: 50, next_x: 20},
+    { alt: "carousel5", src: "images/carousel_5.jpg", rotate: 10, x: 10, y: 70, next_x: 25},
+    { alt: "carousel4", src: "images/carousel_4.jpg", rotate: 20, x: 5, y: 90, next_x: 30},
+    { alt: "carousel5", src: "images/carousel_5.jpg", rotate: 30, x: 0, y: 110, next_x: 35}
+]
+
+const carouselImagesNextAnimation = [
+    { alt: "carousel1", src: "images/carousel_1.jpg", next_y: 500, next_x: -600},
+    { alt: "carousel2", src: "images/carousel_2.jpg", next_y: 570, next_x: -400},
+    { alt: "carousel3", src: "images/carousel_3.jpg", next_y: 640, next_x: -200},
+    { alt: "carousel4", src: "images/carousel_4.jpg", next_y: 710, next_x: 0},
+    { alt: "carousel5", src: "images/carousel_5.jpg", next_y: 780, next_x: 200},
+    { alt: "carousel4", src: "images/carousel_4.jpg", next_y: 850, next_x: 400},
+    { alt: "carousel5", src: "images/carousel_5.jpg", next_y: 920, next_x: 600}
 ]
 
 
@@ -82,7 +94,14 @@ export default function Home(){
                 scrollTrigger: {
                 trigger: ".contact",
                 start: "top 20%",
-                end: "bottom 0%",
+                end: "bottom 0%"
+            }
+        });
+        const trShop = gsap.timeline({
+                scrollTrigger: {
+                trigger: ".shop",
+                start: "top 100%",
+                end: "bottom 70%",
                 markers: true
             }
         });
@@ -258,9 +277,11 @@ export default function Home(){
         trContact.fromTo(".quote_name", 
             {
                 filter: "blur(20px)",
+                opacity: 0
             },
             {
                 filter: "blur(0px)",
+                opacity: 1,
                 stagger: 0.1,
             }
         ).fromTo(".concard",
@@ -285,13 +306,25 @@ export default function Home(){
             }
         ).fromTo(".social_icons", 
             {
-                filter: "blur(20px)"
+                filter: "blur(20px)",
+                opacity: 0
             },
             {
                 filter: "blur(0px)",
+                opacity: 1,
                 stagger: 0.2
             },
             0
+        )
+
+        trShop.to(".concard",
+            {
+                y: (i) => carouselImagesNextAnimation[i].next_y,
+                x: (i) => carouselImagesNextAnimation[i].next_x,
+                rotate: 0,
+                scale: 1.2,
+                duration: 1
+            }
         )
 
     }, [])
@@ -437,7 +470,12 @@ export default function Home(){
                 <SiFoodpanda className="social_icons cursor-pointer"/>
                 <RiInstagramFill className="social_icons cursor-pointer"/>
             </div>
+        </section>
+        
+        <section className="shop">
+                    <div className="w-full h-100">
 
+                    </div>
         </section>
     </>
 }

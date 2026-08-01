@@ -176,8 +176,7 @@ function buildShopTimeline() {
         scrollTrigger: {
             trigger: ".shop",
             start: "top 100%",
-            end: "bottom 70%",
-            markers: true,
+            end: "bottom 70%"
         },
     });
 
@@ -192,6 +191,60 @@ function buildShopTimeline() {
     return tr;
 }
 
+function buildReviewTimeline(){
+    const row = gsap.utils.toArray<HTMLElement>(".rows");
+
+    const tr = gsap.timeline({
+        scrollTrigger: {
+            trigger: row,
+            start: "top 50%",
+            end: "bottom 0%",
+            scrub: 1
+        }
+    })
+
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".review",
+            start: "top 80%",
+            end: "bottom 50%",
+            markers: true
+        }
+    })
+
+    tl.fromTo(".reviewtitle", 
+        {
+            y: 40,
+            filter: "blur(20px)"
+        },
+        {
+            y: 0,
+            filter: "blur(0px)",
+            duration: 1,
+            stagger: 0.1,
+            ease: "power2.out"
+        }
+    )
+
+    tr.fromTo(".cardreview", 
+        {
+            y: 600,
+            filter: "blur(10px)",
+            opacity: 0
+        },
+        {
+            y: 0,
+            opacity: 1,
+            filter: "blur(0px)",
+            duration: 1,
+            stagger: 0.2,
+            ease: "power2.out"
+        }
+    );
+
+    return tr;
+}
+
 export function usePageAnimations() {
     useGSAP(() => {
         buildHomeTimeline();
@@ -199,5 +252,6 @@ export function usePageAnimations() {
         buildPricingTimeline();
         buildContactTimeline();
         buildShopTimeline();
+        buildReviewTimeline();
     }, []);
 }

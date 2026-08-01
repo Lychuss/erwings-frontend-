@@ -5,6 +5,8 @@ import AboutSection from "../components/home/AboutSection";
 import PricingSection from "../components/home/PricingSection";
 import ContactSection from "../components/home/ContactSection";
 import ShopSection from "../components/home/ShopSection";
+import ReviewSection from "../components/home/ReviewSection";
+
 import { usePageAnimations } from "../hooks/usePageAnimation";
 import { useCarousel } from "../hooks/useCarousel";
 
@@ -27,6 +29,7 @@ export default function Home() {
             <PricingSection emblaRef={emblaRef} goToPrev={goToPrev} goToNext={goToNext} />
             <ContactSection />
             <ShopSection />
+            <ReviewSection />
         </>
     );
 }

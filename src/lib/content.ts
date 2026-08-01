@@ -6,6 +6,7 @@ export const quoteName = "OWNED BY RAPHAEL MHARCUS SAN JUAN";
 export const headTitlePricing = "Flavor big prices small.";
 export const mainQuoteContact =
     "One bite of our mouthwatering chicken wings changes everything. Contact us today ☎︎ and treat yourself to irresistible flavor 🍗 and satisfaction!";
+export const mainTitleReview = "Every piece of picture tells a story"
 
 export interface CarouselImage {
     alt: string;
@@ -42,3 +43,20 @@ export const carouselImagesNextAnimation: CarouselNextAnimation[] = [
     { alt: "carousel4", src: "images/carousel_4.jpg", next_y: 850, next_x: 400 },
     { alt: "carousel5", src: "images/carousel_5.jpg", next_y: 920, next_x: 600 },
 ];
+
+export interface CardsReview {
+    alt: string,
+    src: string,
+    description: string,
+    rate: number
+}
+
+export const cardReview: CardsReview[] = [
+    { alt: "review1", src: "/images/review1.jpg", description: "The quality exceeded my expectations in every way. Fast shipping and it arrived exactly as described, which made the whole experience feel effortless.", rate: 2},
+    { alt: "review2", src: "/images/review2-v2.jpg", description: "Good product overall, though the packaging could definitely be sturdier. It arrived with a small dent, but thankfully it still works perfectly fine.", rate: 3},
+    { alt: "review3", src: "/images/review3.jpg", description: "Customer service was incredibly responsive when I ran into a sizing issue. They resolved everything within a day.", rate: 4},
+    { alt: "review4", src: "/images/review4-v2.jpg", description: "Decent value for the price point. It's not the best product I've used, but it reliably does the job well.", rate: 5},
+    { alt: "review5", src: "/images/review5.jpg", description: "This has genuinely become part of my daily routine now. I noticed noticeably better results after just two weeks.", rate: 1},
+    { alt: "review6", src: "/images/review6.jpg", description: "Delivery took a bit longer than expected, but the product itself is fantastic. It was honestly worth the wait in the end.", rate: 2},
+];
+export const stars = [1, 2, 3, 4, 5];

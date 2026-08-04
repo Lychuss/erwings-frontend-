@@ -207,8 +207,7 @@ function buildReviewTimeline(){
         scrollTrigger: {
             trigger: ".review",
             start: "top 80%",
-            end: "bottom 50%",
-            markers: true
+            end: "bottom 50%"
         }
     })
 

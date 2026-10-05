@@ -32,6 +32,7 @@ export const metadata = {
     images: ["/icons/erwings.png"],
   },
 };
+
 export default function RootLayout({
   children,
 }: Readonly<{
